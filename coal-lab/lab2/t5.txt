@@ -1,0 +1,20 @@
+.model small
+.stack 100h
+
+.data
+	strng db 'This$'
+
+.code
+main proc
+	mov ax, @data
+	mov ds, ax
+
+	mov Dx, offset strng
+	mov Ah, 09h
+	INT 21h
+
+	mov Ah, 4Ch
+	INT 21h
+
+main endp
+end main

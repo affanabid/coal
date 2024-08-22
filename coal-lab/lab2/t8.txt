@@ -1,0 +1,42 @@
+.model small
+.stack 100h
+
+.data
+
+.code
+main proc
+	mov Dl, "?"
+	mov Ah, 02h
+	INT 21h
+
+	mov Ah, 01h
+	INT 21h
+	mov Bh, Al
+
+	mov Ah, 01h
+	INT 21h
+	mov Bl, Al
+
+	CMP Bh, Bl
+	JB aa
+	
+	mov Dl, Bl
+	mov Ah, 02h
+	INT 21h
+	mov Dl, Bh
+	mov Ah, 02h
+	INT 21h
+	JMP bb
+
+aa:	mov Dl, Bh
+	mov Ah, 02h
+	INT 21h
+	mov Dl, Bl
+	mov Ah, 02h
+	INT 21h
+
+bb	mov Ah, 4Ch
+	INT 21h
+
+main endp
+end main
